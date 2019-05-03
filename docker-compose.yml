@@ -1,0 +1,16 @@
+mongo:
+    image: mongo:3.4
+    ports:
+    - 27018:27017/tcp
+
+todo:
+    image: docker-test.pibenchmark.com/todo:0.0.1
+    ports:
+    - 8888:8888/tcp
+    links:
+    - mongo:mongo
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8888
+      MONGO_HOST: mongo
+      MONGO_PORT: 27017
